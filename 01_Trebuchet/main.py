@@ -13,9 +13,10 @@ if parse_mode not in [1, 2]:
     print(f"Invalid challenge part: {sys.argv[2]}")
     sys.exit(2)
 
-
+# Final calibration value
 calibration = 0
 
+# Dictionary of spelled digits
 digits = {
     "zero": 0,
     "one": 1,
@@ -29,6 +30,7 @@ digits = {
     "nine": 9,
 }
 
+# Dictionary of spelled digits in reverse
 reversed_digits = {
     "orez": 0,
     "eno": 1,
@@ -42,6 +44,7 @@ reversed_digits = {
     "enin": 9,
 }
 
+# Get the first digit of a line, either a number or a spelled digit from the digits dictionary
 def get_first_digit(line: str, digits: dict[str, int]) -> int:
     for i in range(0, len(line)):
         c = line[i]
@@ -58,9 +61,11 @@ with open(sys.argv[1]) as f:
 
     for line in lines:
 
+        # Find the first and last digits of the line
         first_digit = get_first_digit(line, digits)
         last_digit = get_first_digit("".join(reversed(line)), reversed_digits)
 
+        # Combine the digits into a number
         line_calibration = str(first_digit) + str(last_digit)
 
         print(int(line_calibration))
