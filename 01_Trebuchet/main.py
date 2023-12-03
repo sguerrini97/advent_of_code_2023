@@ -29,7 +29,20 @@ digits = {
     "nine": 9,
 }
 
-def get_first_digit(line: str) -> int:
+reversed_digits = {
+    "orez": 0,
+    "eno": 1,
+    "owt": 2,
+    "eerht": 3,
+    "ruof": 4,
+    "evif" : 5,
+    "xis": 6,
+    "neves": 7,
+    "thgie": 8,
+    "enin": 9,
+}
+
+def get_first_digit(line: str, digits: dict[str, int]) -> int:
     for i in range(0, len(line)):
         c = line[i]
         if c.isdigit():
@@ -45,8 +58,8 @@ with open(sys.argv[1]) as f:
 
     for line in lines:
 
-        first_digit = get_first_digit(line)
-        last_digit = get_first_digit("".join(reversed(line)))
+        first_digit = get_first_digit(line, digits)
+        last_digit = get_first_digit("".join(reversed(line)), reversed_digits)
 
         line_calibration = str(first_digit) + str(last_digit)
 
@@ -54,4 +67,3 @@ with open(sys.argv[1]) as f:
         calibration += int(line_calibration)
 
 print(f"Calibration: {calibration}")
-
